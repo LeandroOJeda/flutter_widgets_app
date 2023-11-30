@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:widgets_app/config/router/app_router.dart';
 import 'package:widgets_app/config/theme/app_theme.dart';
+import 'package:widgets_app/presentation/providers/theme_provider.dart';
 void main() {
-  runApp(const MainApp());
+  runApp(
+    const ProviderScope(
+      child: MainApp()),
+    );
 }
 
-class MainApp extends StatefulWidget {
+class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
   @override
-  State<MainApp> createState() => _MainAppState();
-}
+  Widget build(BuildContext context,ref) {
 
-class _MainAppState extends State<MainApp> {
+    final bool isDarkmode = ref.watch(isDarkModeProvider);
+    final int selectedColor = ref.watch(selectedColorProvider);
 
-  int selColor = 2;
-
-  @override
-  Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      theme: AppTheme(selectedColor: selColor).getTheme(),
+      theme: AppTheme(selectedColor: selectedColor, isDarkmode: isDarkmode).getTheme(),
       routerConfig: appRouter,
     );
   }

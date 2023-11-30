@@ -75,4 +75,17 @@ const List<MenuItem> appMenuItems = [
     icon: Icons.list_rounded
     ),
     
+  MenuItem(
+    title: 'Counter',
+    subTitle: 'contador',
+    link: '/counter',
+    icon: Icons.onetwothree_rounded
+    ),
+
+  MenuItem(
+    title: 'Theme changer',
+    subTitle: 'Cambio de tema',
+    link: '/theme_changer',
+    icon: Icons.color_lens_outlined
+    ),
 ];
